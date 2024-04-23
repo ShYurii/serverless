@@ -28,8 +28,9 @@ public class SqsHandler implements RequestHandler<SQSEvent, Void> {
 
 	@Override
 	public Void handleRequest(SQSEvent event, Context context) {
-		for (SQSEvent.SQSMessage msg : event.getRecords()){
+		for (SQSEvent.SQSMessage msg : event.getRecords()) {
 			LOG.info("New message from SQS: " + msg.getBody());
 		}
 		return null;
 	}
+}

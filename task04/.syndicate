@@ -7,6 +7,67 @@ lambdas:
   sns_handler:
     runtime: java
 events:
+- operation: deploy
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240423.222323
+  deploy_name: task04
+  time_start: '2024-04-23T22:28:40Z'
+  time_end: '2024-04-23T22:28:50Z'
+  duration_sec: 10.267
+- operation: clean
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240423.222323
+  deploy_name: task04
+  time_start: '2024-04-23T22:25:37Z'
+  time_end: '2024-04-23T22:25:41Z'
+  duration_sec: 3.682
+- operation: deploy
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240423.222323
+  deploy_name: task04
+  time_start: '2024-04-23T22:23:53Z'
+  time_end: '2024-04-23T22:24:07Z'
+  duration_sec: 14.613
+- operation: build
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240423.222323
+  time_start: '2024-04-23T22:23:24Z'
+  time_end: '2024-04-23T22:23:41Z'
+  duration_sec: 17.62
+- operation: upload
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240423.222323
+  time_start: '2024-04-23T22:23:36Z'
+  time_end: '2024-04-23T22:23:41Z'
+  duration_sec: 5.571
+- operation: package_meta
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240423.222323
+  time_start: '2024-04-23T22:23:36Z'
+  time_end: '2024-04-23T22:23:36Z'
+  duration_sec: 0.013
+- operation: assemble
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240423.222323
+  time_start: '2024-04-23T22:23:24Z'
+  time_end: '2024-04-23T22:23:36Z'
+  duration_sec: 11.444
+- operation: assemble_java_mvn
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240423.222323
+  time_start: '2024-04-23T22:23:24Z'
+  time_end: '2024-04-23T22:23:36Z'
+  duration_sec: 11.426
+- operation: test
+  initiator: Yuriy.Shevchenko
+  time_start: '2024-04-23T22:23:24Z'
+  time_end: '2024-04-23T22:23:24Z'
+  duration_sec: 0.001
+- operation: test
+  initiator: Yuriy.Shevchenko
+  time_start: '2024-04-23T22:22:05Z'
+  time_end: '2024-04-23T22:22:05Z'
+  duration_sec: 0.001
 - operation: clean
   initiator: Yuriy.Shevchenko
   bundle_name: task04_240423.220708
@@ -107,7 +168,13 @@ events:
   duration_sec: 0.002
 locks:
   modification_lock:
-    last_modification_date: '2024-04-23T22:12:25Z'
+    last_modification_date: '2024-04-23T22:28:50Z'
     locked_till: null
     initiator: Yuriy.Shevchenko
-latest_deploy: {}
+latest_deploy:
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240423.222323
+  deploy_name: task04
+  time_start: '2024-04-23T22:28:40Z'
+  time_end: '2024-04-23T22:28:50Z'
+  duration_sec: 10.267
