@@ -1,1 +1,6 @@
 name: task04
+build_projects_mapping:
+  java: jsrc/main/java
+lambdas:
+  sqs_handler:
+    runtime: java
