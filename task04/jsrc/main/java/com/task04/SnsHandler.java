@@ -10,6 +10,7 @@ import com.syndicate.deployment.annotations.lambda.LambdaHandler;
 //import com.amazonaws.services.lambda.runtime.Context;
 //import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.SNSEvent;
+import com.syndicate.deployment.model.RegionScope;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 //import org.apache.logging.log4j.LogManager;
@@ -31,8 +32,8 @@ import java.util.Map;
 
 @SnsEvents
 @SnsEventSource(
-		targetTopic="lambda_topic"
-//		regionScope="eu-central-1"
+		targetTopic="lambda_topic",
+		regionScope= RegionScope.DEFAULT
 )
 public class SnsHandler implements RequestHandler<SNSEvent, Void> {
 
