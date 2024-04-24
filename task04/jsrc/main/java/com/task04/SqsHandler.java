@@ -31,7 +31,7 @@ import java.util.Map;
 @SqsEvents
 @SqsTriggerEventSource (
 		targetQueue="async_queue",
-		batchSize=0
+		batchSize=1
 )
 public class SqsHandler implements RequestHandler<SQSEvent, Void> {
 
