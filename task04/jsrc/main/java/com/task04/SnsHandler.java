@@ -32,8 +32,8 @@ import java.util.Map;
 
 @SnsEvents
 @SnsEventSource(
-		targetTopic="lambda_topic"
-//		regionScope= RegionScope.DEFAULT
+		targetTopic="lambda_topic",
+		regionScope= RegionScope.DEFAULT
 )
 public class SnsHandler implements RequestHandler<SNSEvent, Void> {
 

@@ -9,6 +9,118 @@ lambdas:
 events:
 - operation: deploy
   initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.022241
+  deploy_name: task04
+  time_start: '2024-04-25T02:29:45Z'
+  time_end: '2024-04-25T02:29:55Z'
+  duration_sec: 10.459
+- operation: clean
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.022241
+  deploy_name: task04
+  time_start: '2024-04-25T02:28:31Z'
+  time_end: '2024-04-25T02:29:36Z'
+  duration_sec: 64.823
+- operation: deploy
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.022241
+  deploy_name: task04
+  time_start: '2024-04-25T02:23:08Z'
+  time_end: '2024-04-25T02:26:50Z'
+  duration_sec: 222.605
+- operation: build
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.022241
+  time_start: '2024-04-25T02:22:41Z'
+  time_end: '2024-04-25T02:22:58Z'
+  duration_sec: 16.867
+- operation: upload
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.022241
+  time_start: '2024-04-25T02:22:53Z'
+  time_end: '2024-04-25T02:22:58Z'
+  duration_sec: 5.611
+- operation: package_meta
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.022241
+  time_start: '2024-04-25T02:22:52Z'
+  time_end: '2024-04-25T02:22:52Z'
+  duration_sec: 0.013
+- operation: assemble
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.022241
+  time_start: '2024-04-25T02:22:42Z'
+  time_end: '2024-04-25T02:22:52Z'
+  duration_sec: 10.408
+- operation: assemble_java_mvn
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.022241
+  time_start: '2024-04-25T02:22:42Z'
+  time_end: '2024-04-25T02:22:52Z'
+  duration_sec: 10.312
+- operation: test
+  initiator: Yuriy.Shevchenko
+  time_start: '2024-04-25T02:22:42Z'
+  time_end: '2024-04-25T02:22:42Z'
+  duration_sec: 0.002
+- operation: clean
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.021328
+  deploy_name: task04
+  time_start: '2024-04-25T02:20:39Z'
+  time_end: '2024-04-25T02:21:43Z'
+  duration_sec: 64.78
+- operation: deploy
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.021328
+  deploy_name: task04
+  time_start: '2024-04-25T02:13:52Z'
+  time_end: '2024-04-25T02:17:35Z'
+  duration_sec: 223.039
+- operation: build
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.021328
+  time_start: '2024-04-25T02:13:28Z'
+  time_end: '2024-04-25T02:13:45Z'
+  duration_sec: 16.917
+- operation: upload
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.021328
+  time_start: '2024-04-25T02:13:40Z'
+  time_end: '2024-04-25T02:13:45Z'
+  duration_sec: 5.683
+- operation: package_meta
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.021328
+  time_start: '2024-04-25T02:13:39Z'
+  time_end: '2024-04-25T02:13:39Z'
+  duration_sec: 0.013
+- operation: assemble
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.021328
+  time_start: '2024-04-25T02:13:29Z'
+  time_end: '2024-04-25T02:13:39Z'
+  duration_sec: 10.436
+- operation: assemble_java_mvn
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.021328
+  time_start: '2024-04-25T02:13:29Z'
+  time_end: '2024-04-25T02:13:39Z'
+  duration_sec: 10.353
+- operation: test
+  initiator: Yuriy.Shevchenko
+  time_start: '2024-04-25T02:13:29Z'
+  time_end: '2024-04-25T02:13:29Z'
+  duration_sec: 0.002
+- operation: clean
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.010106
+  deploy_name: task04
+  time_start: '2024-04-25T02:00:52Z'
+  time_end: '2024-04-25T02:01:56Z'
+  duration_sec: 64.572
+- operation: deploy
+  initiator: Yuriy.Shevchenko
   bundle_name: task04_240425.010106
   deploy_name: task04
   time_start: '2024-04-25T01:01:32Z'
@@ -661,13 +773,13 @@ events:
   duration_sec: 0.002
 locks:
   modification_lock:
-    last_modification_date: '2024-04-25T01:01:43Z'
+    last_modification_date: '2024-04-25T02:29:55Z'
     locked_till: null
     initiator: Yuriy.Shevchenko
 latest_deploy:
   initiator: Yuriy.Shevchenko
-  bundle_name: task04_240425.010106
+  bundle_name: task04_240425.022241
   deploy_name: task04
-  time_start: '2024-04-25T01:01:32Z'
-  time_end: '2024-04-25T01:01:43Z'
-  duration_sec: 11.17
+  time_start: '2024-04-25T02:29:45Z'
+  time_end: '2024-04-25T02:29:55Z'
+  duration_sec: 10.459

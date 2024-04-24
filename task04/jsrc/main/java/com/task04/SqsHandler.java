@@ -28,12 +28,12 @@ import java.util.Map;
 //	aliasName = "${lambdas_alias_name}",
 //	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
-
+@SqsEvents
 @SqsTriggerEventSource (
 		targetQueue="async_queue",
 		batchSize=10
 )
-@SqsEvents
+
 public class SqsHandler implements RequestHandler<SQSEvent, Void> {
 
 	private static final Logger LOG = LogManager.getLogger(SqsHandler.class);
