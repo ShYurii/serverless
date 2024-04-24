@@ -33,7 +33,7 @@ import java.util.Map;
 		targetQueue="async_queue",
 		batchSize=10
 )
-//@SqsEvents
+@SqsEvents
 public class SqsHandler implements RequestHandler<SQSEvent, Void> {
 
 	private static final Logger LOG = LogManager.getLogger(SqsHandler.class);

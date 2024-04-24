@@ -32,8 +32,8 @@ import java.util.Map;
 
 @SnsEvents
 @SnsEventSource(
-		targetTopic="lambda_topic",
-		regionScope= RegionScope.DEFAULT
+		targetTopic="lambda_topic"
+//		regionScope= RegionScope.DEFAULT
 )
 public class SnsHandler implements RequestHandler<SNSEvent, Void> {
 
@@ -41,8 +41,12 @@ public class SnsHandler implements RequestHandler<SNSEvent, Void> {
 
 	@Override
 	public Void handleRequest(SNSEvent event, Context context) {
-		for (SNSEvent.SNSRecord record : event.getRecords()) {
-			LOG.info("New message from SNS: " + record.getSNS().getMessage());
+		if (event != null && event.getRecords() != null) {
+			for (SNSEvent.SNSRecord record : event.getRecords()) {
+				if (record != null && record.getSNS() != null) {
+					LOG.info("New message from SNS: " + record.getSNS().getMessage());
+				}
+			}
 		}
 		return null;
 	}

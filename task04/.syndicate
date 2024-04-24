@@ -7,6 +7,48 @@ lambdas:
   sns_handler:
     runtime: java
 events:
+- operation: deploy
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.010106
+  deploy_name: task04
+  time_start: '2024-04-25T01:01:32Z'
+  time_end: '2024-04-25T01:01:43Z'
+  duration_sec: 11.17
+- operation: build
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.010106
+  time_start: '2024-04-25T01:01:07Z'
+  time_end: '2024-04-25T01:01:23Z'
+  duration_sec: 16.603
+- operation: upload
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.010106
+  time_start: '2024-04-25T01:01:18Z'
+  time_end: '2024-04-25T01:01:23Z'
+  duration_sec: 5.564
+- operation: package_meta
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.010106
+  time_start: '2024-04-25T01:01:18Z'
+  time_end: '2024-04-25T01:01:18Z'
+  duration_sec: 0.012
+- operation: assemble
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.010106
+  time_start: '2024-04-25T01:01:07Z'
+  time_end: '2024-04-25T01:01:17Z'
+  duration_sec: 10.267
+- operation: assemble_java_mvn
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.010106
+  time_start: '2024-04-25T01:01:07Z'
+  time_end: '2024-04-25T01:01:17Z'
+  duration_sec: 10.194
+- operation: test
+  initiator: Yuriy.Shevchenko
+  time_start: '2024-04-25T01:01:07Z'
+  time_end: '2024-04-25T01:01:07Z'
+  duration_sec: 0.002
 - operation: clean
   initiator: Yuriy.Shevchenko
   bundle_name: task04_240425.003826
@@ -619,7 +661,13 @@ events:
   duration_sec: 0.002
 locks:
   modification_lock:
-    last_modification_date: '2024-04-25T00:44:51Z'
+    last_modification_date: '2024-04-25T01:01:43Z'
     locked_till: null
     initiator: Yuriy.Shevchenko
-latest_deploy: {}
+latest_deploy:
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.010106
+  deploy_name: task04
+  time_start: '2024-04-25T01:01:32Z'
+  time_end: '2024-04-25T01:01:43Z'
+  duration_sec: 11.17
