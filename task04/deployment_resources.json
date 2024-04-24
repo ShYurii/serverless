@@ -57,10 +57,6 @@
     "resource_type": "sns_topic",
     "region": "eu-central-1",
     "event_sources": [
-      {
-        "target_rule": "rule_name",
-        "resource_type": "cloudwatch_rule_trigger"
-      }
     ]
   }
 }
