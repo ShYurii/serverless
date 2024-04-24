@@ -7,6 +7,13 @@ lambdas:
   sns_handler:
     runtime: java
 events:
+- operation: clean
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240424.224439
+  deploy_name: task04
+  time_start: '2024-04-24T23:38:45Z'
+  time_end: '2024-04-24T23:39:49Z'
+  duration_sec: 64.549
 - operation: deploy
   initiator: Yuriy.Shevchenko
   bundle_name: task04_240424.224439
@@ -416,13 +423,7 @@ events:
   duration_sec: 0.002
 locks:
   modification_lock:
-    last_modification_date: '2024-04-24T22:48:48Z'
+    last_modification_date: '2024-04-24T23:39:49Z'
     locked_till: null
     initiator: Yuriy.Shevchenko
-latest_deploy:
-  initiator: Yuriy.Shevchenko
-  bundle_name: task04_240424.224439
-  deploy_name: task04
-  time_start: '2024-04-24T22:45:04Z'
-  time_end: '2024-04-24T22:48:48Z'
-  duration_sec: 224.029
+latest_deploy: {}
