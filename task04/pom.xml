@@ -48,6 +48,13 @@
         </dependency>
 
 
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-logs</artifactId>
+                <version>1.12.130</version>
+            </dependency>
+
+
     </dependencies>
 
     <build>
