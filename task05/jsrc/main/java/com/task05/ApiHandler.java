@@ -40,7 +40,7 @@ import java.util.UUID;
 public class ApiHandler implements RequestHandler<Map<String, Object>, Map<String, Object>> {
 
     //	private static final String DYNAMODB_TABLE_NAME = "Events";
-    private static final String DYNAMODB_TABLE_NAME = "cmtr-c5efef97-Events";
+    private static final String DYNAMODB_TABLE_NAME = "cmtr-c5efef97-Events-test";
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
