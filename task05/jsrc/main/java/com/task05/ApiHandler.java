@@ -56,8 +56,8 @@ public class ApiHandler implements RequestHandler<Map<String,Object>, Map<String
 
 			Map<String, AttributeValue> item = new HashMap<>();
 //			item.put("id", AttributeValue.builder().s(id).build());
-			item.put("Id", AttributeValue.builder().n(id).build());
-//			item.put("Id", AttributeValue.builder().s(id).build());
+//			item.put("Id", AttributeValue.builder().n(id).build());
+			item.put("Id", AttributeValue.builder().s(id).build());
 			item.put("principalId", AttributeValue.builder().s(input.get("principalId").toString()).build());
 			item.put("createdAt", AttributeValue.builder().s(createdAt).build());
 			item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(input.get("content"))).build());
