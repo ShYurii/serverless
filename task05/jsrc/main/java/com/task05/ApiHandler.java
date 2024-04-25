@@ -30,63 +30,62 @@ import java.util.UUID;
 
 
 @LambdaHandler(lambdaName = "api_handler",
-	roleName = "api_handler-role",
-	isPublishVersion = true,
-	aliasName = "${lambdas_alias_name}",
-	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
+        roleName = "api_handler-role",
+        isPublishVersion = true,
+        aliasName = "${lambdas_alias_name}",
+        logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
 
 
+public class ApiHandler implements RequestHandler<Map<String, Object>, Map<String, Object>> {
 
-public class ApiHandler implements RequestHandler<Map<String,Object>, Map<String,Object>> {
+    //	private static final String DYNAMODB_TABLE_NAME = "Events";
+    private static final String DYNAMODB_TABLE_NAME = "cmtr-c5efef97-Events";
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
-//	private static final String DYNAMODB_TABLE_NAME = "Events";
-	private static final String DYNAMODB_TABLE_NAME = "cmtr-c5efef97-Events";
-	private static final ObjectMapper objectMapper = new ObjectMapper();
+    @Override
+    public Map<String, Object> handleRequest(Map<String, Object> input, Context context) {
+        DynamoDbClient client = DynamoDbClient.create();
 
-	@Override
-	public Map<String,Object> handleRequest(Map<String, Object> input, Context context) {
-		DynamoDbClient client = DynamoDbClient.create();
+        Map<String, Object> output = new HashMap<>();
 
-		Map<String, Object> output = new HashMap<>();
+        try {
+            String id = UUID.randomUUID().toString();
 
-		try {
-			String id = UUID.randomUUID().toString();
-			String createdAt = java.time.Clock.systemUTC().instant().toString();
+            String createdAt = java.time.Clock.systemUTC().instant().toString();
 
-			Map<String, AttributeValue> item = new HashMap<>();
-//			item.put("id", AttributeValue.builder().s(id).build());
+            Map<String, AttributeValue> item = new HashMap<>();
+			item.put("id", AttributeValue.builder().s(id).build());
 //			item.put("Id", AttributeValue.builder().n(id).build());
-			item.put("Id", AttributeValue.builder().s(id).build());
-			item.put("principalId", AttributeValue.builder().s(input.get("principalId").toString()).build());
-			item.put("createdAt", AttributeValue.builder().s(createdAt).build());
-			item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(input.get("content"))).build());
+//			item.put("Id", AttributeValue.builder().s(id).build());
+//            item.put("id", AttributeValue.builder().n(id).build());
+            item.put("principalId", AttributeValue.builder().s(input.get("principalId").toString()).build());
+            item.put("createdAt", AttributeValue.builder().s(createdAt).build());
+            item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(input.get("content"))).build());
 
-			PutItemRequest putItemRequest = PutItemRequest.builder()
-					.tableName(DYNAMODB_TABLE_NAME)
-					.item(item)
-					.build();
+            PutItemRequest putItemRequest = PutItemRequest.builder()
+                    .tableName(DYNAMODB_TABLE_NAME)
+                    .item(item)
+                    .build();
 
-			PutItemResponse putItemResponse = client.putItem(putItemRequest);
+            PutItemResponse putItemResponse = client.putItem(putItemRequest);
 
-			output.put("statusCode", 201);
+            output.put("statusCode", 201);
 //			output.put("event", item);
-			output.put("event", Map.of(
-					"createdAt", item.get("createdAt").s(),
-					"principalId", item.get("principalId").s(),
-					"Id", item.get("Id").s(),
-					"body", item.get("body").s()
-			));
-		} catch (Exception e) {
-			output.put("statusCode", 500);
-			output.put("exception", e.toString());
-		}
+            output.put("event", Map.of(
+                    "createdAt", item.get("createdAt").s(),
+                    "principalId", item.get("principalId").s(),
+                    "Id", item.get("Id").s(),
+                    "body", item.get("body").s()
+            ));
+        } catch (Exception e) {
+            output.put("statusCode", 500);
+            output.put("exception", e.toString());
+        }
 
-		return output;
-	}
+        return output;
+    }
 }
-
-
 
 
 //public class ApiHandler implements RequestHandler<Object, Map<String, Object>> {
@@ -99,7 +98,6 @@ public class ApiHandler implements RequestHandler<Map<String,Object>, Map<String
 //		return resultMap;
 //	}
 //}
-
 
 
 //public class ApiHandler implements RequestHandler<Map<String,Object>, Map<String,Object>> {
