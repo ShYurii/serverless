@@ -31,5 +31,25 @@
       "lambda-basic-execution"
     ],
     "resource_type": "iam_role"
+  },
+  "task5_api": {
+    "resource_name": "task5_api",
+    "dependencies": [],
+    "resource_type": "api_gateway",
+    "deploy_stage": "api",
+    "resources": {
+      "/events": {
+        "enable_cors": true,
+        "POST": {
+          "authorization_type": "NONE",
+          "integration_type": "lambda",
+          "lambda_alias": "${lambdas_alias_name}",
+          "enable_proxy": false,
+          "method_request_parameters": {},
+          "lambda_name": "api_handler"
+        }
+      }
+    }
   }
+
 }
