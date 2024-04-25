@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
@@ -24,9 +25,7 @@ import software.amazon.awssdk.services.dynamodb.model.PutItemResponse;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+
 
 
 @LambdaHandler(lambdaName = "api_handler",
@@ -75,7 +74,11 @@ public class ApiHandler implements RequestHandler<Map<String, Object>, Map<Strin
                 return output;
             }
 
-            item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(input.get("content"))).build());
+            Map<String, Object> body = new HashMap<>();
+            body.put("content", content);
+            item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(body)).build());
+
+//            item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(input.get("content"))).build());
 
             PutItemRequest putItemRequest = PutItemRequest.builder()
                     .tableName(DYNAMODB_TABLE_NAME)
