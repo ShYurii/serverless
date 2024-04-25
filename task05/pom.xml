@@ -32,29 +32,29 @@
             <version>${syndicate.java.plugin.version}</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.fasterxml.jackson.core</groupId>-->
-<!--            <artifactId>jackson-databind</artifactId>-->
-<!--            <version>2.11.0</version>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/software.amazon.awssdk/dynamodb &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>software.amazon.awssdk</groupId>-->
-<!--            <artifactId>dynamodb</artifactId>-->
-<!--            <version>2.25.37</version>-->
-<!--        </dependency>-->
-
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk</artifactId>
-            <version>1.11.1000</version> <!-- используйте последнюю версию -->
-        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.11.0</version> <!-- используйте последнюю версию -->
+            <version>2.11.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/dynamodb -->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>dynamodb</artifactId>
+            <version>2.25.37</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.amazonaws</groupId>-->
+<!--            <artifactId>aws-java-sdk</artifactId>-->
+<!--            <version>1.11.1000</version> &lt;!&ndash; используйте последнюю версию &ndash;&gt;-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.fasterxml.jackson.core</groupId>-->
+<!--            <artifactId>jackson-databind</artifactId>-->
+<!--            <version>2.11.0</version> &lt;!&ndash; используйте последнюю версию &ndash;&gt;-->
+<!--        </dependency>-->
 
     </dependencies>
 
