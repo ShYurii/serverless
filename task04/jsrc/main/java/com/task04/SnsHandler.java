@@ -58,7 +58,8 @@ public class SnsHandler implements RequestHandler<SNSEvent, Void> {
 			context.getLogger().log("No records in the SNS event");
 			return null;
 		}
-
+		System.out.println(event);
+		System.out.println("Hello from SnsHandler");
 		for (SNSEvent.SNSRecord record : event.getRecords()) {
 			if (record == null || record.getSNS() == null || record.getSNS().getMessage() == null) {
 				context.getLogger().log("No message body in the SNS message");

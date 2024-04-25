@@ -41,6 +41,22 @@
     },
     "resource_type": "iam_policy"
   },
+  "sns_read": {
+    "policy_content": {
+      "Statement": [
+        {
+          "Action": [
+            "sns:Receive",
+            "sns:GetTopicAttributes"
+          ],
+          "Effect": "Allow",
+          "Resource": "*"
+        }
+      ],
+      "Version": "2012-10-17"
+    },
+    "resource_type": "iam_policy"
+  },
   "sqs_handler-role": {
     "predefined_policies": [],
     "principal_service": "lambda",
@@ -54,7 +70,8 @@
     "predefined_policies": [],
     "principal_service": "lambda",
     "custom_policies": [
-      "lambda-basic-execution"
+      "lambda-basic-execution",
+      "sns_read"
     ],
     "resource_type": "iam_role"
   },

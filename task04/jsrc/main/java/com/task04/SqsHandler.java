@@ -52,6 +52,8 @@ public class SqsHandler implements RequestHandler<SQSEvent, Void> {
 			context.getLogger().log("No records in the SQS event");
 			return null;
 		}
+		System.out.println(event);
+		System.out.println("Hello from SqsHandler");
 
 		for (SQSEvent.SQSMessage msg : event.getRecords()) {
 			if (msg == null || msg.getBody() == null) {
