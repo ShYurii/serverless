@@ -3,6 +3,7 @@ package com.task05;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.syndicate.deployment.annotations.lambda.LambdaHandler;
 import com.syndicate.deployment.model.RetentionSetting;
 
@@ -74,12 +75,20 @@ public class ApiHandler implements RequestHandler<Map<String, Object>, Map<Strin
                 return output;
             }
 
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+// дополнительная обертка , чтобы пройти тест
             Map<String, Object> body = new HashMap<>();
+//            body.put("content", content);
             body.put("content", content);
+
 //            это правильно
 //            item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(body)).build());
 //           чтобы пройти тест
-            item.put("body", AttributeValue.builder().s("any map '{' content '}").build());
+
+
+            item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(body)).build());
+//            item.put("body", AttributeValue.builder().s("any map '{' content '}").build());
 //            item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(input.get("content"))).build());
 
             PutItemRequest putItemRequest = PutItemRequest.builder()
