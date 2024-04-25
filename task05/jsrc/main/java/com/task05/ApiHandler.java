@@ -70,7 +70,13 @@ public class ApiHandler implements RequestHandler<Map<String,Object>, Map<String
 			PutItemResponse putItemResponse = client.putItem(putItemRequest);
 
 			output.put("statusCode", 201);
-			output.put("event", item);
+//			output.put("event", item);
+			output.put("event", Map.of(
+					"createdAt", item.get("createdAt").s(),
+					"principalId", item.get("principalId").s(),
+					"Id", item.get("Id").s(),
+					"body", item.get("body").s()
+			));
 		} catch (Exception e) {
 			output.put("statusCode", 500);
 			output.put("exception", e.toString());
