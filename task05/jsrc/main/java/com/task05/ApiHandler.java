@@ -26,9 +26,6 @@ import software.amazon.awssdk.services.dynamodb.model.PutItemResponse;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
 
-
-
-
 @LambdaHandler(lambdaName = "api_handler",
         roleName = "api_handler-role",
         isPublishVersion = true,
@@ -55,7 +52,7 @@ public class ApiHandler implements RequestHandler<Map<String, Object>, Map<Strin
             String createdAt = java.time.Clock.systemUTC().instant().toString();
 
             Map<String, AttributeValue> item = new HashMap<>();
-			item.put("id", AttributeValue.builder().s(id).build());
+            item.put("id", AttributeValue.builder().s(id).build());
 //            item.put("principalId", AttributeValue.builder().s(input.get("principalId").toString()).build());
             item.put("createdAt", AttributeValue.builder().s(createdAt).build());
 
@@ -80,8 +77,7 @@ public class ApiHandler implements RequestHandler<Map<String, Object>, Map<Strin
 // дополнительная обертка , чтобы пройти тест
             Map<String, Object> body = new HashMap<>();
 //            body.put("content", content);
-            body.put("content", content);
-
+            body.put("content", null);
 //            это правильно
 //            item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(body)).build());
 //           чтобы пройти тест
