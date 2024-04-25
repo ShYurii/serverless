@@ -56,11 +56,25 @@ public class ApiHandler implements RequestHandler<Map<String, Object>, Map<Strin
 
             Map<String, AttributeValue> item = new HashMap<>();
 			item.put("id", AttributeValue.builder().s(id).build());
-//			item.put("Id", AttributeValue.builder().n(id).build());
-//			item.put("Id", AttributeValue.builder().s(id).build());
-//            item.put("id", AttributeValue.builder().n(id).build());
-            item.put("principalId", AttributeValue.builder().s(input.get("principalId").toString()).build());
+//            item.put("principalId", AttributeValue.builder().s(input.get("principalId").toString()).build());
             item.put("createdAt", AttributeValue.builder().s(createdAt).build());
+
+            Object principalId = input.get("principalId");
+            if (principalId == null) {
+                output.put("statusCode", 400);
+                output.put("error", "Missing principalId");
+                return output;
+            }
+//            item.put("principalId", AttributeValue.builder().s(principalId.toString()).build());
+            item.put("principalId", AttributeValue.builder().n(principalId.toString()).build());
+
+            Object content = input.get("content");
+            if (content == null) {
+                output.put("statusCode", 400);
+                output.put("error", "Missing content");
+                return output;
+            }
+
             item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(input.get("content"))).build());
 
             PutItemRequest putItemRequest = PutItemRequest.builder()
@@ -74,8 +88,10 @@ public class ApiHandler implements RequestHandler<Map<String, Object>, Map<Strin
 //			output.put("event", item);
             output.put("event", Map.of(
                     "createdAt", item.get("createdAt").s(),
-                    "principalId", item.get("principalId").s(),
-//                    "Id", item.get("Id").s(),
+//                    "principalId", item.get("principalId").s(),
+//                    "principalId", item.get("principalId").n(),
+                    "principalId", Integer.parseInt(item.get("principalId").n()),
+
                     "id", item.get("id").s(),
 //                    "body", item.get("body").s()
                     "body", objectMapper.readValue(item.get("body").s(), Map.class)
@@ -88,81 +104,3 @@ public class ApiHandler implements RequestHandler<Map<String, Object>, Map<Strin
         return output;
     }
 }
-
-
-//public class ApiHandler implements RequestHandler<Object, Map<String, Object>> {
-//
-//	public Map<String, Object> handleRequest(Object request, Context context) {
-//		System.out.println("Hello from lambda");
-//		Map<String, Object> resultMap = new HashMap<String, Object>();
-//		resultMap.put("statusCode", 200);
-//		resultMap.put("body", "Hello from Lambda");
-//		return resultMap;
-//	}
-//}
-
-
-//public class ApiHandler implements RequestHandler<Map<String,Object>, Map<String,Object>> {
-//
-//	private static final String DYNAMODB_TABLE_NAME = "Events";
-//	private static final ObjectMapper objectMapper = new ObjectMapper();
-//
-//	@Override
-//	public Map<String,Object> handleRequest(Map<String, Object> input, Context context) {
-//		AmazonDynamoDB client = AmazonDynamoDBClientBuilder.defaultClient();
-//
-//		String id = UUID.randomUUID().toString();
-//		String createdAt = java.time.Clock.systemUTC().instant().toString();
-//
-//		Map<String, AttributeValue> item = new HashMap<>();
-//		item.put("id", new AttributeValue(id));
-//		item.put("principalId", new AttributeValue(input.get("principalId").toString()));
-//		item.put("createdAt", new AttributeValue(createdAt));
-//		item.put("body", new AttributeValue(objectMapper.writeValueAsString(input.get("content"))));
-//
-//		PutItemRequest putItemRequest = new PutItemRequest(DYNAMODB_TABLE_NAME, item);
-//		PutItemResult putItemResult = client.putItem(putItemRequest);
-//
-//		Map<String, Object> output = new HashMap<>();
-//		output.put("statusCode", 201);
-//		output.put("event", item);
-//
-//		return output;
-//	}
-//}
-
-//
-//
-//public class ApiHandler implements RequestHandler<Map<String,Object>, Map<String,Object>> {
-//
-//	private static final String DYNAMODB_TABLE_NAME = "Events";
-//	private static final ObjectMapper objectMapper = new ObjectMapper();
-//
-//	@Override
-//	public Map<String,Object> handleRequest(Map<String, Object> input, Context context) {
-//		AmazonDynamoDB client = AmazonDynamoDBClientBuilder.defaultClient();
-//		Map<String, Object> output = new HashMap<>();
-//
-//		try {
-//			String id = UUID.randomUUID().toString();
-//			String createdAt = java.time.Clock.systemUTC().instant().toString();
-//
-//			Map<String, AttributeValue> item = new HashMap<>();
-//			item.put("id", new AttributeValue(id));
-//			item.put("principalId", new AttributeValue(input.get("principalId").toString()));
-//			item.put("createdAt", new AttributeValue(createdAt));
-//			item.put("body", new AttributeValue(objectMapper.writeValueAsString(input.get("content"))));
-//
-//			PutItemRequest putItemRequest = new PutItemRequest(DYNAMODB_TABLE_NAME, item);
-//			PutItemResult putItemResult = client.putItem(putItemRequest);
-//
-//			output.put("statusCode", 201);
-//			output.put("event", item);
-//		} catch (Exception e) {
-//			output.put("statusCode", 500);
-//			output.put("exception", e.toString());
-//		}
-//
-//		return output;
-//	}
-//}
