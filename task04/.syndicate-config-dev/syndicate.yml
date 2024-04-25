@@ -8,6 +8,8 @@ region: eu-central-1
 resources_prefix: cmtr-c5efef97-
 use_temp_creds: true
 
+
+
 expiration: 2024-04-25T09:45:24+00:00
 temp_aws_access_key_id: ASIAS3MHLZ5IX3HQWTCH
 temp_aws_secret_access_key: f5+J2g2KgL2sunC+r2ZUVKQKXtQoq/HI0MRDhZvJ
