@@ -9,6 +9,55 @@ lambdas:
 events:
 - operation: deploy
   initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.120100
+  deploy_name: task04
+  time_start: '2024-04-25T12:01:25Z'
+  time_end: '2024-04-25T12:01:37Z'
+  duration_sec: 12.112
+- operation: build
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.120100
+  time_start: '2024-04-25T12:01:01Z'
+  time_end: '2024-04-25T12:01:18Z'
+  duration_sec: 17.561
+- operation: upload
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.120100
+  time_start: '2024-04-25T12:01:12Z'
+  time_end: '2024-04-25T12:01:18Z'
+  duration_sec: 5.818
+- operation: package_meta
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.120100
+  time_start: '2024-04-25T12:01:12Z'
+  time_end: '2024-04-25T12:01:12Z'
+  duration_sec: 0.013
+- operation: assemble
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.120100
+  time_start: '2024-04-25T12:01:01Z'
+  time_end: '2024-04-25T12:01:12Z'
+  duration_sec: 10.994
+- operation: assemble_java_mvn
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.120100
+  time_start: '2024-04-25T12:01:01Z'
+  time_end: '2024-04-25T12:01:12Z'
+  duration_sec: 10.894
+- operation: test
+  initiator: Yuriy.Shevchenko
+  time_start: '2024-04-25T12:01:01Z'
+  time_end: '2024-04-25T12:01:01Z'
+  duration_sec: 0.003
+- operation: clean
+  initiator: Yuriy.Shevchenko
+  bundle_name: task04_240425.115437
+  deploy_name: task04
+  time_start: '2024-04-25T11:59:19Z'
+  time_end: '2024-04-25T12:00:23Z'
+  duration_sec: 64.713
+- operation: deploy
+  initiator: Yuriy.Shevchenko
   bundle_name: task04_240425.115437
   deploy_name: task04
   time_start: '2024-04-25T11:55:03Z'
@@ -871,13 +920,13 @@ events:
   duration_sec: 0.002
 locks:
   modification_lock:
-    last_modification_date: '2024-04-25T11:55:16Z'
+    last_modification_date: '2024-04-25T12:01:37Z'
     locked_till: null
     initiator: Yuriy.Shevchenko
 latest_deploy:
   initiator: Yuriy.Shevchenko
-  bundle_name: task04_240425.115437
+  bundle_name: task04_240425.120100
   deploy_name: task04
-  time_start: '2024-04-25T11:55:03Z'
-  time_end: '2024-04-25T11:55:16Z'
-  duration_sec: 12.635
+  time_start: '2024-04-25T12:01:25Z'
+  time_end: '2024-04-25T12:01:37Z'
+  duration_sec: 12.112

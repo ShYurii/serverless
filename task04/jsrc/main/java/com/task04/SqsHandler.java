@@ -13,10 +13,10 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 @LambdaHandler(lambdaName = "sqs_handler",
-	roleName = "sqs_handler-role",
-	isPublishVersion = true,
+	roleName = "sqs_handler-role"
+//	isPublishVersion = true,
 //	aliasName = "${lambdas_alias_name}",
-	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
+//	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
 @SqsEvents
 @SqsTriggerEventSource (

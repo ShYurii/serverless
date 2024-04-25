@@ -13,16 +13,16 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 @LambdaHandler(lambdaName = "sns_handler",
-	roleName = "sns_handler-role",
-	isPublishVersion = true,
+	roleName = "sns_handler-role"
+//	isPublishVersion = true,
 //	aliasName = "${lambdas_alias_name}",
-	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
+//	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
 
 @SnsEvents
 @SnsEventSource(
-		targetTopic="lambda_topic",
-		regionScope= RegionScope.DEFAULT
+		targetTopic="lambda_topic"
+//		regionScope= RegionScope.DEFAULT
 )
 public class SnsHandler implements RequestHandler<SNSEvent, Void> {
 
