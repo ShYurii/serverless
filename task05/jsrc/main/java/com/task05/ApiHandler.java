@@ -75,8 +75,10 @@ public class ApiHandler implements RequestHandler<Map<String, Object>, Map<Strin
             output.put("event", Map.of(
                     "createdAt", item.get("createdAt").s(),
                     "principalId", item.get("principalId").s(),
-                    "Id", item.get("Id").s(),
-                    "body", item.get("body").s()
+//                    "Id", item.get("Id").s(),
+                    "id", item.get("id").s(),
+//                    "body", item.get("body").s()
+                    "body", objectMapper.readValue(item.get("body").s(), Map.class)
             ));
         } catch (Exception e) {
             output.put("statusCode", 500);
