@@ -26,7 +26,7 @@ import com.amazonaws.services.lambda.runtime.events.DynamodbEvent.DynamodbStream
 )
 public class AuditProducer implements RequestHandler<DynamodbEvent, Void> {
 
-	private static final String DYNAMODB_TABLE_NAME = "Audit";
+	private static final String DYNAMODB_TABLE_NAME = "cmtr-c5efef97-Audit";
 	private final DynamoDbClient client = DynamoDbClient.create();
 
 	@Override
