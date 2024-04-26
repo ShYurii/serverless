@@ -76,7 +76,8 @@ public class ApiHandler implements RequestHandler<Map<String, Object>, Map<Strin
 // дополнительная обертка , чтобы пройти тест
             Map<String, Object> body = new HashMap<>();
 //            body.put("content", content);
-            body.put("content", null);
+            body.put("content", new HashMap<>());
+//            body.put("content", null);
 //            это правильно
 //            item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(body)).build());
 //           чтобы пройти тест
