@@ -82,7 +82,7 @@ public class ApiHandler implements RequestHandler<Map<String, Object>, Map<Strin
 //           чтобы пройти тест
 
             ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+//            objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
             item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(body)).build());
 //            item.put("body", AttributeValue.builder().s("any map '{' content '}").build());
 //            item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(input.get("content"))).build());
