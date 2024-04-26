@@ -2,6 +2,7 @@ package com.task06;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.syndicate.deployment.annotations.events.DynamoDbTriggerEventSource;
 import com.syndicate.deployment.annotations.lambda.LambdaHandler;
 import com.syndicate.deployment.model.RetentionSetting;
 
@@ -15,15 +16,22 @@ import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import com.amazonaws.services.lambda.runtime.events.DynamodbEvent;
 import com.amazonaws.services.lambda.runtime.events.DynamodbEvent.DynamodbStreamRecord;
+import com.syndicate.deployment.annotations.events.DynamoDbEvents;
 
 
 
 @LambdaHandler(lambdaName = "audit_producer",
-	roleName = "audit_producer-role",
-	isPublishVersion = true,
-	aliasName = "${lambdas_alias_name}",
-	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
+	roleName = "audit_producer-role"
+//	isPublishVersion = true,
+//	aliasName = "${lambdas_alias_name}",
+//	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
+
+@DynamoDbTriggerEventSource(
+		targetTable="Configuration",
+		batchSize=1
+)
+
 public class AuditProducer implements RequestHandler<DynamodbEvent, Void> {
 
 	private static final String DYNAMODB_TABLE_NAME = "cmtr-c5efef97-Audit";
