@@ -51,14 +51,29 @@ public class AuditProducer implements RequestHandler<DynamodbEvent, Void> {
 		return null;
 	}
 
-	private void handleInsert(DynamodbStreamRecord record) {
-		Map<String, AttributeValue> item = new HashMap<>();
-		item.put("id", AttributeValue.builder().s(UUID.randomUUID().toString()).build());
-		item.put("itemKey", AttributeValue.builder().s(record.getDynamodb().getNewImage().get("key").getS()).build());
-		item.put("modificationTime", AttributeValue.builder().s(Instant.now().toString()).build());
-		item.put("newValue", AttributeValue.builder().s(record.getDynamodb().getNewImage().get("value").getN()).build());
-		putItem(item);
-	}
+//	private void handleInsert(DynamodbStreamRecord record) {
+//		Map<String, AttributeValue> item = new HashMap<>();
+//		item.put("id", AttributeValue.builder().s(UUID.randomUUID().toString()).build());
+//		item.put("itemKey", AttributeValue.builder().s(record.getDynamodb().getNewImage().get("key").getS()).build());
+//		item.put("modificationTime", AttributeValue.builder().s(Instant.now().toString()).build());
+//		item.put("newValue", AttributeValue.builder().s(record.getDynamodb().getNewImage().get("value").getN()).build());
+//		putItem(item);
+//	}
+private void handleInsert(DynamodbStreamRecord record) {
+	Map<String, AttributeValue> item = new HashMap<>();
+	item.put("id", AttributeValue.builder().s(UUID.randomUUID().toString()).build());
+	item.put("itemKey", AttributeValue.builder().s(record.getDynamodb().getNewImage().get("key").getS()).build());
+	item.put("modificationTime", AttributeValue.builder().s(Instant.now().toString()).build());
+
+	Map<String, AttributeValue> newValue = new HashMap<>();
+	newValue.put("key", AttributeValue.builder().s(record.getDynamodb().getNewImage().get("key").getS()).build());
+	newValue.put("value", AttributeValue.builder().n(record.getDynamodb().getNewImage().get("value").getN()).build());
+	item.put("newValue", AttributeValue.builder().m(newValue).build());
+
+	putItem(item);
+}
+
+
 
 	private void handleModify(DynamodbStreamRecord record) {
 		Map<String, AttributeValue> item = new HashMap<>();
