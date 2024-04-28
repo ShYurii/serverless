@@ -11,10 +11,7 @@ import com.syndicate.deployment.model.DeploymentRuntime;
 import com.syndicate.deployment.model.RetentionSetting;
 import com.syndicate.deployment.model.lambda.url.AuthType;
 import com.syndicate.deployment.model.lambda.url.InvokeMode;
-import com.task08.OpenMeteoAPI;
 
-import java.util.HashMap;
-import java.util.Map;
 
 @LambdaHandler(lambdaName = "api_handler",
 	roleName = "api_handler-role",
