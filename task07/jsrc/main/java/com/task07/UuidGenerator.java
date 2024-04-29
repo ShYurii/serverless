@@ -31,7 +31,7 @@ import java.util.stream.Stream;
 public class UuidGenerator implements RequestHandler<Object, String> {
 
 //	private static final String BUCKET_NAME = "uuid-storage";
-	private static final String BUCKET_NAME = "cmtr-c5efef97-uuid-storage";
+	private static final String BUCKET_NAME = "cmtr-c5efef97-uuid-storage-test";
 
 	@Override
 	public String handleRequest(Object input, Context context) {
