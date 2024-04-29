@@ -37,9 +37,13 @@ public class UuidGenerator implements RequestHandler<Object, String> {
 	public String handleRequest(Object input, Context context) {
 		AmazonS3 s3Client = AmazonS3ClientBuilder.defaultClient();
 
+//		String uuids = Stream.generate(UUID::randomUUID)
+//				.limit(10)
+//				.map(UUID::toString)
+//				.collect(Collectors.joining(","));
 		String uuids = Stream.generate(UUID::randomUUID)
 				.limit(10)
-				.map(UUID::toString)
+				.map(uuid -> "\"" + uuid.toString() + "\"")
 				.collect(Collectors.joining(","));
 
 		String content = String.format("{\"ids\":[%s]}", uuids);
