@@ -32,8 +32,21 @@
             <version>${syndicate.java.plugin.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
 
-            <!-- other dependencies -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version>
+        </dependency>
+
+
+        <!-- other dependencies -->
 
         <dependency>
             <groupId>com.task08</groupId>
