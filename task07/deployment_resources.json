@@ -14,7 +14,8 @@
             "dynamodb:DeleteItem",
             "ssm:PutParameter",
             "ssm:GetParameter",
-            "kms:Decrypt"
+            "kms:Decrypt",
+            "s3:PutObject"
           ],
           "Effect": "Allow",
           "Resource": "*"
@@ -34,7 +35,7 @@
   },
   "uuid-storage": {
     "resource_type": "s3_bucket",
-    "acl": "public-read-write",
+    "acl": "private",
     "location": "eu-central-1",
     "cors": [],
     "policy": {}
