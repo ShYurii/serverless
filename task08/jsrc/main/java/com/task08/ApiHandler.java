@@ -69,6 +69,8 @@ public class ApiHandler implements RequestHandler<Object, String> {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+		return forecast;
+//		return out;
 //		try {
 ////			forecast = api.getWeatherForecast();
 //			String response = api.getWeatherForecast();
@@ -98,6 +100,6 @@ public class ApiHandler implements RequestHandler<Object, String> {
 //		} catch (Exception e) {
 //			forecast = "Error: " + e.getMessage();
 //		}
-		return out;
+
 	}
 }
