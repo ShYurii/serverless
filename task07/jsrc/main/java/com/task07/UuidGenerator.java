@@ -5,8 +5,17 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.syndicate.deployment.annotations.lambda.LambdaHandler;
 import com.syndicate.deployment.model.RetentionSetting;
 
-import java.util.HashMap;
-import java.util.Map;
+
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
+import java.time.Instant;
+import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 
 @LambdaHandler(lambdaName = "uuid_generator",
 	roleName = "uuid_generator-role",
@@ -14,13 +23,25 @@ import java.util.Map;
 	aliasName = "${lambdas_alias_name}",
 	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
-public class UuidGenerator implements RequestHandler<Object, Map<String, Object>> {
 
-	public Map<String, Object> handleRequest(Object request, Context context) {
-		System.out.println("Hello from lambda");
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("statusCode", 200);
-		resultMap.put("body", "Hello from Lambda");
-		return resultMap;
+public class UuidGenerator implements RequestHandler<Object, String> {
+
+	private static final String BUCKET_NAME = "uuid-storage";
+
+	@Override
+	public String handleRequest(Object input, Context context) {
+		AmazonS3 s3Client = AmazonS3ClientBuilder.defaultClient();
+
+		String uuids = Stream.generate(UUID::randomUUID)
+				.limit(10)
+				.map(UUID::toString)
+				.collect(Collectors.joining(","));
+
+		String content = String.format("{\"ids\":[%s]}", uuids);
+		String fileName = Instant.now().toString();
+
+		s3Client.putObject(BUCKET_NAME, fileName, new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)), new ObjectMetadata());
+
+		return String.format("File %s created in bucket %s", fileName, BUCKET_NAME);
 	}
 }
