@@ -12,7 +12,7 @@ import com.syndicate.deployment.model.TracingMode;
 
 import com.syndicate.deployment.model.lambda.url.AuthType;
 import com.syndicate.deployment.model.lambda.url.InvokeMode;
-import org.example.OpenMeteoAPI;
+//import org.example.OpenMeteoAPI;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
@@ -30,14 +30,14 @@ import java.util.UUID;
 //	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED,
 		tracingMode= TracingMode.Active
 )
-
-@LambdaLayer(
-		layerName = "sdk-layer",
-		libraries = {"lib/open_meteo_api-1.0-SNAPSHOT.jar"},
-		runtime = DeploymentRuntime.JAVA11,
-//		architectures = {Architecture.ARM64},
-		artifactExtension = ArtifactExtension.ZIP
-)
+//
+//@LambdaLayer(
+//		layerName = "sdk-layer",
+//		libraries = {"lib/open_meteo_api-1.0-SNAPSHOT.jar"},
+//		runtime = DeploymentRuntime.JAVA11,
+////		architectures = {Architecture.ARM64},
+//		artifactExtension = ArtifactExtension.ZIP
+//)
 @LambdaUrlConfig(
 		authType = AuthType.NONE,
 		invokeMode = InvokeMode.BUFFERED
