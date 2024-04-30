@@ -31,13 +31,13 @@ import java.util.UUID;
 		tracingMode= TracingMode.Active
 )
 
-@LambdaLayer(
-		layerName = "sdk-layer",
-		libraries = {"lib/open_meteo_api-1.0-SNAPSHOT.jar"},
-		runtime = DeploymentRuntime.JAVA11,
-//		architectures = {Architecture.ARM64},
-		artifactExtension = ArtifactExtension.ZIP
-)
+//@LambdaLayer(
+//		layerName = "sdk-layer",
+//		libraries = {"lib/open_meteo_api-1.0-SNAPSHOT.jar"},
+//		runtime = DeploymentRuntime.JAVA11,
+////		architectures = {Architecture.ARM64},
+//		artifactExtension = ArtifactExtension.ZIP
+//)
 @LambdaUrlConfig(
 		authType = AuthType.NONE,
 		invokeMode = InvokeMode.BUFFERED
@@ -46,7 +46,7 @@ import java.util.UUID;
 public class Processor implements RequestHandler<Object, String> {
 
 	private DynamoDbClient dynamoDB;
-	private String DYNAMODB_TABLE_NAME = "Weather";
+	private String DYNAMODB_TABLE_NAME = "cmtr-c5efef97-Weather-test";
 
 	public Processor() {
 		this.dynamoDB = DynamoDbClient.create();

@@ -12,9 +12,12 @@
             "dynamodb:PutItem",
             "dynamodb:Batch*",
             "dynamodb:DeleteItem",
+            "dynamodb:UpdateItem",
             "ssm:PutParameter",
             "ssm:GetParameter",
-            "kms:Decrypt"
+            "kms:Decrypt",
+            "xray:PutTraceSegments",
+            "xray:PutTelemetryRecords"
           ],
           "Effect": "Allow",
           "Resource": "*"
@@ -39,6 +42,7 @@
     "read_capacity": 1,
     "write_capacity": 1,
     "global_indexes": [],
-    "autoscaling": []
+    "autoscaling": [],
+    "stream_view_type": "NEW_AND_OLD_IMAGES"
   }
 }
