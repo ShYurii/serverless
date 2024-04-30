@@ -43,10 +43,48 @@ import java.util.UUID;
 		invokeMode = InvokeMode.BUFFERED
 )
 
+//public class Processor implements RequestHandler<Object, String> {
+//
+//	private DynamoDbClient dynamoDB;
+//	private String DYNAMODB_TABLE_NAME = "cmtr-c5efef97-Weather-test";
+//
+//	public Processor() {
+//		this.dynamoDB = DynamoDbClient.create();
+//	}
+//
+//	public String handleRequest(Object input, Context context) {
+//		OpenMeteoAPI api = new OpenMeteoAPI(52.5200, 13.4050); // Berlin, Germany
+//		String forecast;
+//
+//		try {
+//			forecast = api.getWeatherForecast();
+//			JSONObject forecastJson = new JSONObject(forecast);
+//
+//			Map<String, AttributeValue> item = new HashMap<>();
+//			item.put("id", AttributeValue.builder().s(UUID.randomUUID().toString()).build());
+//			item.put("forecast", AttributeValue.builder().s(forecastJson.toString()).build());
+//
+//			PutItemRequest putItemRequest = PutItemRequest.builder()
+//					.tableName(DYNAMODB_TABLE_NAME)
+//					.item(item)
+//					.build();
+//
+//			dynamoDB.putItem(putItemRequest);
+//
+//		} catch (Exception e) {
+//			throw new RuntimeException(e);
+//		}
+//		return forecast;
+//	}
+//}
+
+//-----------v2
+
+
 public class Processor implements RequestHandler<Object, String> {
 
 	private DynamoDbClient dynamoDB;
-	private String DYNAMODB_TABLE_NAME = "cmtr-c5efef97-Weather-test";
+	private String DYNAMODB_TABLE_NAME = "Weather";
 
 	public Processor() {
 		this.dynamoDB = DynamoDbClient.create();
@@ -62,7 +100,15 @@ public class Processor implements RequestHandler<Object, String> {
 
 			Map<String, AttributeValue> item = new HashMap<>();
 			item.put("id", AttributeValue.builder().s(UUID.randomUUID().toString()).build());
-			item.put("forecast", AttributeValue.builder().s(forecastJson.toString()).build());
+			item.put("latitude", AttributeValue.builder().n(String.valueOf(forecastJson.getDouble("latitude"))).build());
+			item.put("longitude", AttributeValue.builder().n(String.valueOf(forecastJson.getDouble("longitude"))).build());
+			item.put("generationtime_ms", AttributeValue.builder().n(String.valueOf(forecastJson.getDouble("generationtime_ms"))).build());
+			item.put("utc_offset_seconds", AttributeValue.builder().n(String.valueOf(forecastJson.getInt("utc_offset_seconds"))).build());
+			item.put("timezone", AttributeValue.builder().s(forecastJson.getString("timezone")).build());
+			item.put("timezone_abbreviation", AttributeValue.builder().s(forecastJson.getString("timezone_abbreviation")).build());
+			item.put("elevation", AttributeValue.builder().n(String.valueOf(forecastJson.getDouble("elevation"))).build());
+			item.put("hourly_units", AttributeValue.builder().s(forecastJson.getJSONObject("hourly_units").toString()).build());
+			item.put("hourly", AttributeValue.builder().s(forecastJson.getJSONObject("hourly").toString()).build());
 
 			PutItemRequest putItemRequest = PutItemRequest.builder()
 					.tableName(DYNAMODB_TABLE_NAME)
