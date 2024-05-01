@@ -2,9 +2,11 @@ package com.task09;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
 
+
+
 @DynamoDBDocument
 public class Forecast {
-    private int evaluation;
+    private double elevation;
     private double generationtime_ms;
     private HourlyData hourly;
     private HourlyUnits hourlyUnits;
@@ -14,31 +16,31 @@ public class Forecast {
     private String timezone_abbreviation;
     private int utc_offset_seconds;
 
-    public Forecast(int evaluation, int generationtime_ms, HourlyData hourly, HourlyUnits hourlyUnits, int latitude, int longutude, String timezone, String timezone_abbreviation, int utc_offset_seconds) {
-        this.evaluation = evaluation;
+    public Forecast(double elevation, double generationtime_ms, HourlyData hourly, HourlyUnits hourlyUnits, double latitude, double longitude, String timezone, String timezone_abbreviation, int utc_offset_seconds) {
+        this.elevation = elevation;
         this.generationtime_ms = generationtime_ms;
         this.hourly = hourly;
         this.hourlyUnits = hourlyUnits;
         this.latitude = latitude;
-        this.longitude = longutude;
+        this.longitude = longitude;
         this.timezone = timezone;
         this.timezone_abbreviation = timezone_abbreviation;
         this.utc_offset_seconds = utc_offset_seconds;
     }
 
-    public int getEvaluation() {
-        return evaluation;
+    public double getElevation() {
+        return elevation;
     }
 
-    public void setEvaluation(int evaluation) {
-        this.evaluation = evaluation;
+    public void setElevation(double elevation) {
+        this.elevation = elevation;
     }
 
     public double getGenerationtime_ms() {
         return generationtime_ms;
     }
 
-    public void setGenerationtime_ms(int generationtime_ms) {
+    public void setGenerationtime_ms(double generationtime_ms) {
         this.generationtime_ms = generationtime_ms;
     }
 
@@ -62,7 +64,7 @@ public class Forecast {
         return latitude;
     }
 
-    public void setLatitude(int latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
@@ -70,7 +72,7 @@ public class Forecast {
         return longitude;
     }
 
-    public void setLongitude(int longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
@@ -101,7 +103,7 @@ public class Forecast {
     @Override
     public String toString() {
         return "Forecast{" +
-                "evaluation=" + evaluation +
+                "elevation=" + elevation +
                 ", generationtime_ms=" + generationtime_ms +
                 ", hourly=" + hourly +
                 ", hourlyUnits=" + hourlyUnits +
