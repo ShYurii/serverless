@@ -61,9 +61,9 @@ public class Processor implements RequestHandler<Object, Map<String, Object>> {
 
 	public Map<String, Object> handleRequest(Object request, Context context) {
 		Gson gson = new Gson();
-		OpenMeteoAPI openMeteoWeather = new OpenMeteoAPI();
+		OpenMeteoWeather meteoAPI = new OpenMeteoWeather();
 
-		Forecast forecast = gson.fromJson(openMeteoWeather.callApi(), new TypeToken<Forecast>() {
+		Forecast forecast = gson.fromJson(meteoAPI.callApi(), new TypeToken<Forecast>() {
 		}.getType());
 		WeatherRecord weatherRecord = new WeatherRecord();
 		weatherRecord.setId(UUID.randomUUID().toString());
