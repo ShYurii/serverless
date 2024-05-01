@@ -49,22 +49,26 @@ import java.util.UUID;
 		authType = AuthType.NONE,
 		invokeMode = InvokeMode.BUFFERED
 )
+
+
 public class Processor implements RequestHandler<Object, Map<String, Object>> {
-	private final AmazonDynamoDB amazonDynamoDB;
-	private static final String REGION = "eu-central-1";
 
-	public Processor() {
-		this.amazonDynamoDB = AmazonDynamoDBClientBuilder.standard()
-				.withRegion(REGION)
-				.build();
-	}
+	private static final AmazonDynamoDB amazonDynamoDB = AmazonDynamoDBClientBuilder.defaultClient();
 
+	@Override
 	public Map<String, Object> handleRequest(Object request, Context context) {
 		Gson gson = new Gson();
 		OpenMeteoWeather meteoAPI = new OpenMeteoWeather();
 
 		Forecast forecast = gson.fromJson(meteoAPI.callApi(), new TypeToken<Forecast>() {
 		}.getType());
+
+		// Проверьте, существуют ли 'hourly_units' в полученном прогнозе
+		if (forecast.getHourlyUnits() == null) {
+			// Если 'hourly_units' отсутствуют, установите их в ожидаемые значения
+			forecast.setHourlyUnits(new HourlyUnits("°C", "iso8601"));
+		}
+
 		WeatherRecord weatherRecord = new WeatherRecord();
 		weatherRecord.setId(UUID.randomUUID().toString());
 		weatherRecord.setForecast(forecast);
@@ -74,11 +78,10 @@ public class Processor implements RequestHandler<Object, Map<String, Object>> {
 
 		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put("statusCode", 200);
-		resultMap.put("body", "Successfully");
+		resultMap.put("body", "Success");
 		return resultMap;
 	}
 }
-
 
 
 
