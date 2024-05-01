@@ -74,7 +74,11 @@ public class Processor implements RequestHandler<Object, Map<String, Object>> {
 		weatherRecord.setForecast(forecast);
 
 		DynamoDBMapper mapper = new DynamoDBMapper(amazonDynamoDB);
-		mapper.save(weatherRecord);
+		// Проверьте, что 'hourly_units' не являются null перед сохранением
+		if (weatherRecord.getForecast().getHourlyUnits() != null) {
+			mapper.save(weatherRecord);
+		}
+//		mapper.save(weatherRecord);
 
 		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put("statusCode", 200);

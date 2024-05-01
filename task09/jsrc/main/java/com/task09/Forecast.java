@@ -1,5 +1,6 @@
 package com.task09;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
 
 
@@ -9,6 +10,7 @@ public class Forecast {
     private double elevation;
     private double generationtime_ms;
     private HourlyData hourly;
+    @DynamoDBAttribute(attributeName = "hourly_units")
     private HourlyUnits hourlyUnits;
     private double latitude;
     private double longitude;
