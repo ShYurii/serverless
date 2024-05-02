@@ -98,9 +98,31 @@
           "enable_proxy": false
         }
       },
+      "/tables": {
+        "enable_cors": false,
+        "POST": {
+          "authorization_type": "NONE",
+          "integration_type": "lambda",
+          "lambda_alias": "${lambdas_alias_name}",
+          "lambda_name": "api_handler",
+          "method_request_parameters": {},
+          "enable_proxy": false
+        }
+      },
       "/reservations": {
         "enable_cors": false,
         "GET": {
+          "authorization_type": "NONE",
+          "integration_type": "lambda",
+          "lambda_alias": "${lambdas_alias_name}",
+          "lambda_name": "api_handler",
+          "method_request_parameters": {},
+          "enable_proxy": false
+        }
+      },
+      "/reservations": {
+        "enable_cors": false,
+        "POST": {
           "authorization_type": "NONE",
           "integration_type": "lambda",
           "lambda_alias": "${lambdas_alias_name}",
