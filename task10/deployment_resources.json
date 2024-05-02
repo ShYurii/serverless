@@ -90,7 +90,15 @@
       "/tables": {
         "enable_cors": false,
         "GET": {
-          "authorization_type": "NONE",
+          "authorization_type": "COGNITO_USER_POOLS",
+          "integration_type": "lambda",
+          "lambda_alias": "${lambdas_alias_name}",
+          "lambda_name": "api_handler",
+          "method_request_parameters": {},
+          "enable_proxy": false
+        },
+        "POST": {
+          "authorization_type": "COGNITO_USER_POOLS",
           "integration_type": "lambda",
           "lambda_alias": "${lambdas_alias_name}",
           "lambda_name": "api_handler",
@@ -98,10 +106,10 @@
           "enable_proxy": false
         }
       },
-      "/tables": {
+      "/tables/{tableId}": {
         "enable_cors": false,
-        "POST": {
-          "authorization_type": "NONE",
+        "GET": {
+          "authorization_type": "COGNITO_USER_POOLS",
           "integration_type": "lambda",
           "lambda_alias": "${lambdas_alias_name}",
           "lambda_name": "api_handler",
@@ -112,18 +120,15 @@
       "/reservations": {
         "enable_cors": false,
         "GET": {
-          "authorization_type": "NONE",
+          "authorization_type": "COGNITO_USER_POOLS",
           "integration_type": "lambda",
           "lambda_alias": "${lambdas_alias_name}",
           "lambda_name": "api_handler",
           "method_request_parameters": {},
           "enable_proxy": false
-        }
-      },
-      "/reservations": {
-        "enable_cors": false,
+        },
         "POST": {
-          "authorization_type": "NONE",
+          "authorization_type": "COGNITO_USER_POOLS",
           "integration_type": "lambda",
           "lambda_alias": "${lambdas_alias_name}",
           "lambda_name": "api_handler",
