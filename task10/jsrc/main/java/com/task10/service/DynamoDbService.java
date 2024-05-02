@@ -16,7 +16,7 @@ public class DynamoDbService {
 
     public TablesResponse getAllTables(AmazonDynamoDB amazonDynamoDB) {
         DynamoDB dynamoDB = new DynamoDB(amazonDynamoDB);
-        Table table = dynamoDB.getTable("cmtr-985d4752-Tables-test");
+        Table table = dynamoDB.getTable("cmtr-c5efef97-Tables-test");
 
         Iterator<Item> iterator = table.scan().iterator();
         TablesResponse response = new TablesResponse();
@@ -37,7 +37,7 @@ public class DynamoDbService {
 
     public Tables getTableById(AmazonDynamoDB amazonDynamoDB, int tableId) {
         DynamoDB dynamoDB = new DynamoDB(amazonDynamoDB);
-        Table table = dynamoDB.getTable("cmtr-985d4752-Tables-test");
+        Table table = dynamoDB.getTable("cmtr-c5efef97-Tables-test");
 
         GetItemSpec getItemSpec = new GetItemSpec().withPrimaryKey("id", tableId);
         Item item = table.getItem(getItemSpec);
@@ -69,7 +69,7 @@ public class DynamoDbService {
 
     public ReservationsResponse getAllReservations(AmazonDynamoDB amazonDynamoDB) {
         DynamoDB dynamoDB = new DynamoDB(amazonDynamoDB);
-        Table table = dynamoDB.getTable("cmtr-985d4752-Reservations-test");
+        Table table = dynamoDB.getTable("cmtr-c5efef97-Reservations-test");
 
         Iterator<Item> iterator = table.scan().iterator();
         ReservationsResponse response = new ReservationsResponse();
