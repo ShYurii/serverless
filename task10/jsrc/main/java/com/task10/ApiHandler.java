@@ -16,15 +16,9 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.cognitoidentityprovider.CognitoIdentityProviderClient;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-
-@LambdaHandler(lambdaName = "api_handler",
-        roleName = "api_handler-role")
-
+@LambdaHandler(lambdaName = "api_handler", roleName = "api_handler-role")
 public class ApiHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
     private CognitoIdentityProviderClient cognitoClient;
@@ -101,9 +95,9 @@ public class ApiHandler implements RequestHandler<APIGatewayProxyRequestEvent, A
             } else if (input.getHttpMethod().equals("POST")) {
                 ReservationsRequest reservationsRequest = gson.fromJson(input.getBody(), new TypeToken<ReservationsRequest>() {
                 }.getType());
-                try {
+                try{
                     apiGatewayProxyResponseEvent.withBody(gson.toJson(dynamoDbService.createReservation(amazonDynamoDB, reservationsRequest)));
-                } catch (Exception e) {
+                }catch (Exception e){
                     System.out.println(e);
                     apiGatewayProxyResponseEvent.withStatusCode(400);
                 }
@@ -156,23 +150,13 @@ public class ApiHandler implements RequestHandler<APIGatewayProxyRequestEvent, A
     }
 
     private void signUp(CognitoIdentityProviderClient identityProviderClient, String clientId, String userName, String password, String email) {
-        AttributeType nameAttr = AttributeType.builder().name("name").value(userName).build();
-        AttributeType emailAttr = AttributeType.builder().name("email").value(email).build();
+        AttributeType userAttrs = AttributeType.builder().name("name").value(userName).name("email").value(email).build();
 
         List<AttributeType> userAttrsList = new ArrayList<>();
-        userAttrsList.add(nameAttr);
-        userAttrsList.add(emailAttr);
-
+        userAttrsList.add(userAttrs);
         try {
-            AdminCreateUserRequest adminCreateUserRequest = AdminCreateUserRequest.builder()
-                    .userPoolId(getUserPoolId())
-                    .username(email)
-                    .userAttributes(userAttrsList)
-                    .temporaryPassword(password)
-                    .messageAction(MessageActionType.SUPPRESS.toString())
-                    .build();
-
-            identityProviderClient.adminCreateUser(adminCreateUserRequest);
+            SignUpRequest signUpRequest = SignUpRequest.builder().userAttributes(userAttrsList).username(email).clientId(clientId).password(password).build();
+            identityProviderClient.signUp(signUpRequest);
             System.out.println("User has been signed up");
 
             AdminConfirmSignUpRequest confirmSignUpRequest = AdminConfirmSignUpRequest.builder()
@@ -180,7 +164,7 @@ public class ApiHandler implements RequestHandler<APIGatewayProxyRequestEvent, A
                     .username(email)
                     .build();
             identityProviderClient.adminConfirmSignUp(confirmSignUpRequest);
-            System.out.println("Sign up confirmed");
+            System.out.println("Sing up confirmed");
         } catch (CognitoIdentityProviderException e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             throw e;
