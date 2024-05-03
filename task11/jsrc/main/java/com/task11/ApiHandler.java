@@ -2,25 +2,36 @@ package com.task11;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.syndicate.deployment.annotations.lambda.LambdaHandler;
-import com.syndicate.deployment.model.RetentionSetting;
+import com.task11.constant.Constants;
+import com.task11.handlers.ReservationHandler;
+import com.task11.handlers.TableHandler;
+import com.task11.handlers.SignInHandler;
+import com.task11.handlers.SingUpHandler;
 
-import java.util.HashMap;
-import java.util.Map;
+@LambdaHandler(lambdaName = "api_handler", roleName = "api_handler-role")
+public class ApiHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-@LambdaHandler(lambdaName = "api_handler",
-	roleName = "api_handler-role",
-	isPublishVersion = true,
-	aliasName = "${lambdas_alias_name}",
-	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
-)
-public class ApiHandler implements RequestHandler<Object, Map<String, Object>> {
+	public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent request, Context context) {
+		String path = request.getPath();
 
-	public Map<String, Object> handleRequest(Object request, Context context) {
-		System.out.println("Hello from lambda");
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("statusCode", 200);
-		resultMap.put("body", "Hello from Lambda");
-		return resultMap;
+		switch (path) {
+			case "/signup": {
+				return SingUpHandler.execute(request, context);
+			}
+			case "/signin": {
+				return SignInHandler.execute(request, context);
+			}
+			case "/tables": {
+				return TableHandler.execute(request, context);
+			}
+			case "/reservations": {
+				return ReservationHandler.execute(request, context);
+			}
+		}
+
+		return TableHandler.execute(request, context);
 	}
 }
