@@ -716,7 +716,7 @@
         "x-amazon-apigateway-authtype": "cognito_user_pools",
         "x-amazon-apigateway-authorizer": {
           "x-syndicate-cognito-userpool-names": [
-            "cmtr-af777e5c-simple-booking-userpool"
+            "cmtr-c5efef97-simple-booking-userpool"
           ],
           "type": "cognito_user_pools"
         }
