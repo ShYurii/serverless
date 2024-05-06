@@ -32,103 +32,6 @@
       "${account_id}"
     ]
   },
-  "task11_api": {
-    "deploy_stage": "api",
-    "dependencies": [
-      {
-        "resource_name": "api_handler",
-        "resource_type": "lambda"
-      }
-    ],
-    "resources": {
-      "/signup": {
-        "enable_cors": true,
-        "POST": {
-          "integration_request_body_template": {},
-          "authorization_type": "NONE",
-          "integration_type": "lambda",
-          "method_request_parameters": {},
-          "default_error_pattern": true,
-          "integration_passthrough_behavior": "WHEN_NO_TEMPLATES",
-          "lambda_name": "api_handler",
-          "enable_proxy": true
-        }
-      },
-      "/signin": {
-        "enable_cors": true,
-        "POST": {
-          "integration_request_body_template": {},
-          "authorization_type": "NONE",
-          "integration_type": "lambda",
-          "method_request_parameters": {},
-          "default_error_pattern": true,
-          "integration_passthrough_behavior": "WHEN_NO_TEMPLATES",
-          "lambda_name": "api_handler",
-          "enable_proxy": true
-        }
-      },
-      "/tables": {
-        "enable_cors": true,
-        "GET": {
-          "integration_request_body_template": {},
-          "authorization_type": "NONE",
-          "integration_type": "lambda",
-          "method_request_parameters": {},
-          "default_error_pattern": true,
-          "integration_passthrough_behavior": "WHEN_NO_TEMPLATES",
-          "lambda_name": "api_handler",
-          "enable_proxy": true
-        },
-        "POST": {
-          "integration_request_body_template": {},
-          "authorization_type": "NONE",
-          "integration_type": "lambda",
-          "method_request_parameters": {},
-          "default_error_pattern": true,
-          "integration_passthrough_behavior": "WHEN_NO_TEMPLATES",
-          "lambda_name": "api_handler",
-          "enable_proxy": true
-        }
-      },
-      "/tables/{tableId}": {
-        "enable_cors": true,
-        "GET": {
-          "integration_request_body_template": {},
-          "authorization_type": "NONE",
-          "integration_type": "lambda",
-          "method_request_parameters": {},
-          "default_error_pattern": true,
-          "integration_passthrough_behavior": "WHEN_NO_TEMPLATES",
-          "lambda_name": "api_handler",
-          "enable_proxy": true
-        }
-      },
-      "/reservations": {
-        "enable_cors": true,
-        "GET": {
-          "integration_request_body_template": {},
-          "authorization_type": "NONE",
-          "integration_type": "lambda",
-          "method_request_parameters": {},
-          "default_error_pattern": true,
-          "integration_passthrough_behavior": "WHEN_NO_TEMPLATES",
-          "lambda_name": "api_handler",
-          "enable_proxy": true
-        },
-        "POST": {
-          "integration_request_body_template": {},
-          "authorization_type": "NONE",
-          "integration_type": "lambda",
-          "method_request_parameters": {},
-          "default_error_pattern": true,
-          "integration_passthrough_behavior": "WHEN_NO_TEMPLATES",
-          "lambda_name": "api_handler",
-          "enable_proxy": true
-        }
-      }
-    },
-    "resource_type": "api_gateway"
-  },
   "Tables": {
     "resource_type": "dynamodb_table",
     "hash_key_name": "id",
@@ -162,6 +65,38 @@
         "ALLOW_REFRESH_TOKEN_AUTH",
         "ALLOW_USER_PASSWORD_AUTH"
       ]
+    }
+  },
+  "api-ui-hoster": {
+    "resource_type": "s3_bucket",
+    "acl": "public-read",
+    "cors": [],
+    "policy": {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "PublicReadGetObject",
+          "Effect": "Allow",
+          "Principal": "*",
+          "Action": [
+            "s3:GetObject"
+          ],
+          "Resource": [
+            "arn:aws:s3:::{bucket_name}/*"
+          ]
+        }
+      ]
+    },
+    "public_access_block": {
+      "block_public_acls": false,
+      "ignore_public_acls": false,
+      "block_public_policy": false,
+      "restrict_public_buckets": false
+    },
+    "website_hosting": {
+      "enabled": true,
+      "index_document": "index.html",
+      "error_document": "error.html"
     }
   }
 }
