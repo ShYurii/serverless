@@ -78,7 +78,7 @@ public class TableHandler {
             response.setStatusCode(Constants.StatusCodes.BAD_REQUEST);
         }
 
-        // Добавить заголовки CORS
+        // headers CORS
         Map<String, String> headers = new HashMap<>();
         headers.put("Access-Control-Allow-Headers", "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token");
         headers.put("Access-Control-Allow-Origin", "*");
