@@ -709,16 +709,16 @@
       }
     },
     "securitySchemes": {
-      "CognitoUserPool": {
+      "authorizer": {
         "type": "apiKey",
         "name": "Authorization",
         "in": "header",
         "x-amazon-apigateway-authtype": "cognito_user_pools",
         "x-amazon-apigateway-authorizer": {
-          "type": "cognito_user_pools",
           "x-syndicate-cognito-userpool-names": [
-            "simple-booking-userpool"
-          ]
+            "cmtr-af777e5c-simple-booking-userpool"
+          ],
+          "type": "cognito_user_pools"
         }
       }
     }
