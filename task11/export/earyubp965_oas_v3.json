@@ -1,17 +1,19 @@
 {
-  "openapi" : "3.0.1",
-  "info" : {
-    "title" : "task11_api",
-    "version" : "2024-05-06T18:19:30Z"
+  "openapi": "3.0.1",
+  "info": {
+    "title": "cmtr-c5efef97-task11_api",
+    "version": "2024-05-06T18:53:22Z"
   },
-  "servers" : [ {
-    "url" : "https://kj9yk84dt3.execute-api.eu-central-1.amazonaws.com/{basePath}",
-    "variables" : {
-      "basePath" : {
-        "default" : "api"
+  "servers": [
+    {
+      "url": "https://earyubp965.execute-api.eu-central-1.amazonaws.com/{basePath}",
+      "variables": {
+        "basePath": {
+          "default": "api"
+        }
       }
     }
-  } ],
+  ],
   "paths": {
     "/reservations": {
       "get": {
@@ -654,7 +656,14 @@
             "type": "string"
           }
         },
-        "required": ["tableNumber", "clientName", "phoneNumber", "date", "slotTimeStart", "slotTimeEnd"]
+        "required": [
+          "tableNumber",
+          "clientName",
+          "phoneNumber",
+          "date",
+          "slotTimeStart",
+          "slotTimeEnd"
+        ]
       },
       "TableRequestModel": {
         "type": "object",
@@ -675,7 +684,13 @@
             "type": "integer"
           }
         },
-        "required": ["id", "number", "places", "isVip", "minOrder"]
+        "required": [
+          "id",
+          "number",
+          "places",
+          "isVip",
+          "minOrder"
+        ]
       },
       "SignInRequestModel": {
         "type": "object",
@@ -687,7 +702,10 @@
             "type": "string"
           }
         },
-        "required": ["email", "password"]
+        "required": [
+          "email",
+          "password"
+        ]
       },
       "SignUpRequestModel": {
         "type": "object",
@@ -705,7 +723,12 @@
             "type": "string"
           }
         },
-        "required": ["firstName", "lastName", "email", "password"]
+        "required": [
+          "firstName",
+          "lastName",
+          "email",
+          "password"
+        ]
       }
     },
     "securitySchemes": {
