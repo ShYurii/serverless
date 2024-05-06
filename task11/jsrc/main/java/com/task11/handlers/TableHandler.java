@@ -6,13 +6,12 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.amazonaws.services.dynamodbv2.document.Item;
-
 import com.task11.constant.Constants;
 import com.task11.entity.TableRequestModel;
 import com.task11.utils.DynamoDBUtils;
@@ -73,13 +72,22 @@ public class TableHandler {
             }
 
             response.setStatusCode(Constants.StatusCodes.SUCCESS);
-            return response;
         } catch (IOException exception) {
             context.getLogger().log("Exception: " + exception);
 
             response.setStatusCode(Constants.StatusCodes.BAD_REQUEST);
-            return response;
         }
+
+        // Добавить заголовки CORS
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Access-Control-Allow-Headers", "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token");
+        headers.put("Access-Control-Allow-Origin", "*");
+        headers.put("Access-Control-Allow-Methods", "*");
+        headers.put("Accept-Version", "*");
+
+        response.setHeaders(headers);
+
+        return response;
     }
 
     private static Map<String, Object> convertToJSON(Item item) {

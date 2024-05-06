@@ -14,6 +14,7 @@ import com.task11.entity.SignUpRequestModel;
 import com.task11.utils.UserPoolUtils;
 
 import java.util.Map;
+import java.util.HashMap;
 
 public class SingUpHandler {
 
@@ -48,12 +49,21 @@ public class SingUpHandler {
             cognitoClient.adminConfirmSignUp(adminConfirmSignUp);
 
             response.setStatusCode(Constants.StatusCodes.SUCCESS);
-            return response;
         } catch (Exception exception) {
             context.getLogger().log("Exception: " + exception);
 
             response.setStatusCode(Constants.StatusCodes.BAD_REQUEST);
-            return response;
         }
+
+        // Добавить заголовки CORS
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Access-Control-Allow-Headers", "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token");
+        headers.put("Access-Control-Allow-Origin", "*");
+        headers.put("Access-Control-Allow-Methods", "*");
+        headers.put("Accept-Version", "*");
+
+        response.setHeaders(headers);
+
+        return response;
     }
 }

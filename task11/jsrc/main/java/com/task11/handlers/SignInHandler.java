@@ -20,6 +20,7 @@ import com.task11.utils.UserPoolUtils;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 import static com.task11.constant.Constants.SignInParams.PASSWORD;
@@ -65,13 +66,22 @@ public class SignInHandler {
 
             response.setStatusCode(Constants.StatusCodes.SUCCESS);
             response.setBody("{\"accessToken\": \"" + accessToken + "\"}");
-            return response;
 
         } catch (IOException exception) {
             context.getLogger().log("Exception: " + exception);
 
             response.setStatusCode(Constants.StatusCodes.BAD_REQUEST);
-            return response;
         }
+
+        // Добавить заголовки CORS
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Access-Control-Allow-Headers", "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token");
+        headers.put("Access-Control-Allow-Origin", "*");
+        headers.put("Access-Control-Allow-Methods", "*");
+        headers.put("Accept-Version", "*");
+
+        response.setHeaders(headers);
+
+        return response;
     }
 }
