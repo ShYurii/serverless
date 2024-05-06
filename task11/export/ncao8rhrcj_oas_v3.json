@@ -1,7 +1,7 @@
 {
   "openapi" : "3.0.1",
   "info" : {
-    "title" : "cmtr-c5efef97-task11_api",
+    "title" : "task11_api",
     "version" : "2024-05-06T20:33:48Z"
   },
   "servers" : [ {
